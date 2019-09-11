@@ -26,6 +26,10 @@ class LoginController < ApplicationController
     erb :login_failed
   end 
   
+  get '/signup' do 
+    erb :signup 
+  end 
+  
 end #class end 
   
   
