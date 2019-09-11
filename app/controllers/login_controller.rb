@@ -5,10 +5,8 @@ class LoginController < ApplicationController
   # don't need to enable sessions here, since enabled in Application ApplicationController
 
   get '/' do 
-    "Hello, World"
-    # make an index erb as a welcome page with links to login or sign up
+    erb :homepage
   end 
-  
   
   get '/login' do 
     erb :login 
@@ -19,8 +17,8 @@ class LoginController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id 
       # redirect to  user's home page with list of their movies 
-    # else 
-    #   redirect '/login_failed'
+    else 
+      redirect '/login_failed'
     end 
   end 
   
