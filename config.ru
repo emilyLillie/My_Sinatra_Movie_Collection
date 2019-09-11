@@ -1,4 +1,7 @@
 require './config/environment'
+require 'sinatra'
+require_relative './app/controllers/application_controller'
+require_relative '.app/controllers/login_controller'
 
 if ActiveRecord::Migrator.needs_migration?
   raise 'Migrations are pending. Run `rake db:migrate` to resolve the issue.'
@@ -11,8 +14,7 @@ Dir[File.join(File.dirname(__FILE__), "app/controllers", "*.rb")].collect {|file
   class_name = Object.const_get(string_class_name)
   use class_name
 end
+
+use LoginController 
 run ApplicationController
 
-# require './config/environment'
-
-# run App
