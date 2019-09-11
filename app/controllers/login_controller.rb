@@ -24,6 +24,10 @@ class LoginController < ApplicationController
     end 
   end 
   
-end 
+  get '/login_failed' do 
+    erb login_failed
+  end 
+  
+end #class end 
   
   
