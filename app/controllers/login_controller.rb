@@ -16,7 +16,7 @@ class LoginController < ApplicationController
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id 
-      # redirect to  user's home page with list of their movies 
+      redirect '/movies'
     else 
       redirect '/login_failed'
     end 
