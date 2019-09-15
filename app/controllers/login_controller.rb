@@ -34,14 +34,27 @@ class LoginController < ApplicationController
     end
    end
   
-  post '/signup' do 
-    if params[:username] != "" && params[:username] != "" && params[:password] != ""
-      @user = User.create(username: params[:username], email: params[:email], password: params[:password])
-      session[:user_id] = @user.id
+  # post '/signup' do 
+  #   if params[:username] != "" && params[:username] != "" && params[:password] != ""
+  #     @user = User.create(username: params[:username], email: params[:email], password: params[:password])
+  #     session[:user_id] = @user.id
 
-      redirect "/movies"
+  #     redirect "/movies"
+  #   else
+  #     redirect "/signup"
+  #   end
+  # end
+  
+  post "/signup" do
+   if params[:username].empty? || params[:password].empty?
+      redirect to '/login_failed'
+    end
+
+    user = User.new(:username => params[:username], :password => params[:password])
+    if user.save
+      redirect '/login'
     else
-      redirect "/signup"
+      redirect '/failure'
     end
   end
 

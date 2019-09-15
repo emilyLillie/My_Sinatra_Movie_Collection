@@ -1,8 +1,15 @@
 
 class ApplicationController < Sinatra::Base
-  register Sinatra::ActiveRecordExtension
-  set :session_secret, "secrets"
-  set :views, Proc.new { File.join(root, "../views/") }
+  # register Sinatra::ActiveRecordExtension
+  # set :session_secret, "secrets"
+  # # set :views, "app/views"
+  # set :views, Proc.new { File.join(root, "../views/") }
+  
+  configure do
+		set :views, "app/views"
+		enable :sessions
+		set :session_secret, "password_security"
+	end
 
 #put helpers here so other controller classes would inherit them 
 
