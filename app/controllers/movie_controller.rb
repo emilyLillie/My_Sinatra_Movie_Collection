@@ -44,4 +44,10 @@ class MovieController < ApplicationController
     @movie.save
   end 
   
+  delete '/movies/:id' do 
+    @movie = Movie.find_by_id(params[:id])
+    @movie.delete 
+    redirect to '/movies'
+  end 
+  
 end 
