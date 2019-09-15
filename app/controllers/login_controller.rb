@@ -27,9 +27,25 @@ class LoginController < ApplicationController
   end 
   
   get '/signup' do 
-    erb :signup 
-  end 
+    if logged_in?
+      redirect "/movies"
+    else
+      erb :signup
+    end
+   end
   
-end #class end 
+  post '/signup' do 
+    if params[:username] != "" && params[:username] != "" && params[:password] != ""
+      @user = User.create(username: params[:username], email: params[:email], password: params[:password])
+      session[:user_id] = @user.id
+
+      redirect "/movies"
+    else
+      redirect "/signup"
+    end
+  end
+
+end
+ 
   
   

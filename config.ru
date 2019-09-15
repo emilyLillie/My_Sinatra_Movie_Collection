@@ -16,5 +16,6 @@ use Rack::MethodOverride
 # end
 
 use LoginController 
+use MovieController
 run ApplicationController
 
