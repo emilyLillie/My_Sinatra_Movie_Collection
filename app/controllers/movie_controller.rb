@@ -47,7 +47,18 @@ class MovieController < ApplicationController
   delete '/movies/:id' do 
     @movie = Movie.find_by_id(params[:id])
     @movie.delete 
-    redirect to '/movies'
+    redirect '/movies'
+  end 
+  
+  get '/movies/search/:title' do 
+    @movie = Movie.find_by(params[:title])
+    erb :'/movies/search'
+  end 
+  
+  post '/movies/search/:title' do 
+    @movie = Movie.find_by(params[:title])
+    @movie.title 
+    redirect '/movies/:id
   end 
   
 end 

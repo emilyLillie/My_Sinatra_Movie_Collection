@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+
+<h2>Find A Movie Here:</h2>
+
+<form method="post" action='/movies/search/<%= @movie.title %>'>
+  <label for="title">Title:</label>
+  <input type="text" id="title" name="title" placeholder="Child's Play">
+  
+  <input type="submit" value="Find My Movie!">
+  
+
+</form>
