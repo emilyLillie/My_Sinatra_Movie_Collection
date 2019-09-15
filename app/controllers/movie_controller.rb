@@ -26,4 +26,9 @@ class MovieController < ApplicationController
     redirect to "/movies/#{Movie.last.id}"
   end
   
+  get '/movies/:id' do 
+    @movie = Movie.find_by_id(params[:id])
+    erb :movie_info
+  end 
+  
 end 

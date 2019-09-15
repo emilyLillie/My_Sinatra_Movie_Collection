@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+
+<h1>Title: <%= @movie.title %></h1>
+<h1>Genre: <%= @recipe.genre %></h1>
+
+<p>Click <a href="/movies/edit">here</a> to edit this movie's info.</p>
+
+
+<form action="/movies/<%=@movie.id%>" method="post">
+  <input type="hidden" name="_method" value="DELETE"><br>
+  <input type="submit" value="delete"><br>
+</form>
