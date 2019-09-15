@@ -13,4 +13,17 @@ class MovieController < ApplicationController
     end
   end
   
+  get '/movies/new' do
+    if !logged_in?
+      redirect to "/login"
+    else
+      erb :'/movies/new'
+    end
+  end
+  
+  post '/movies/new' do 
+    @movie = Movie.create(:title => params[:title], :genre => params[:genre])
+    redirect to "/movies/#{Movie.last.id}"
+  end
+  
 end 
