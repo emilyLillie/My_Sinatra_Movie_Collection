@@ -1,10 +1,10 @@
 <h2>All Your Movies</h2>
 <h1>Welcome, <%= @user.username %>! </h1>
 
-<% @user.movies.each do |movie| %>
+<% @movies.each do |movie| %>
 <ul>
-  <li><%= movie.title %></li>
-  <li> <%= movie.genre %> </li>
+  <li><%= movies.title %></li>
+  <li> <%= movies.genre %> </li>
 </ul>
 <% end %>
 

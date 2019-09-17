@@ -7,6 +7,7 @@ class MovieController < ApplicationController
   get '/movies' do
     if logged_in?
      @user = User.find(session[:user_id])
+     @movies = Movies.all.select {|movie| movie.user_id == session[:user_id]}
      erb :'/movies/home' 
     else 
       redirect to "/login"
