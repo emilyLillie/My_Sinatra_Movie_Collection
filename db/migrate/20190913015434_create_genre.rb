@@ -1,9 +1,9 @@
-class CreateGenre < ActiveRecord::Migration
+# class CreateGenre < ActiveRecord::Migration
   
-  def change
-    create_table :genre do |t|
-      t.string :name 
-    end
-  end
+#   def change
+#     create_table :genre do |t|
+#       t.string :name 
+#     end
+#   end
 
-end
+# end
