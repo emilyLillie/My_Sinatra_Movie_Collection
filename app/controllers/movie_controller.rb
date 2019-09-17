@@ -22,41 +22,41 @@ class MovieController < ApplicationController
   end
   
   post '/movies' do 
-    @movie = Movie.create(:title => params[:title], :genre => params[:genre])
+    @movie = Movies.create(:title => params[:title], :genre => params[:genre])
     @movie.save
-    redirect to "/movies/#{Movie.last.id}"
+    redirect to "/movies/#{Movies.last.id}"
   end
   
   get '/movies/:id' do 
-    @movie = Movie.find_by_id(params[:id])
+    @movie = Movies.find_by_id(params[:id])
     erb :movie_info
   end 
   
   get '/movies/:id/edit' do 
-    @movie = Movie.find_by_id(params[:id])
+    @movie = Movies.find_by_id(params[:id])
     erb :'/movies/edit'
   end 
   
   patch '/movies/:id' do 
-    @movie = Movie.find_by_id(params[:id])
+    @movie = Movies.find_by_id(params[:id])
     @movie.title = params[:title]
     @movie.genre = params[:genre]
     @movie.save
   end 
   
   delete '/movies/:id' do 
-    @movie = Movie.find_by_id(params[:id])
+    @movie = Movies.find_by_id(params[:id])
     @movie.delete 
     redirect '/movies'
   end 
   
   get '/movies/search/:title' do 
-    @movie = Movie.find_by(params[:title])
+    @movie = Movies.find_by(params[:title])
     erb :'/movies/search'
   end 
   
   post '/movies/search/:title' do 
-    @movie = Movie.find_by(params[:title])
+    @movie = Movies.find_by(params[:title])
     @movie.title 
     redirect '/movies/:id'
   end 
