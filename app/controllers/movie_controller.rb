@@ -16,24 +16,22 @@ class MovieController < ApplicationController
   end
   
   get '/movies/new' do
-    # if !logged_in?
-    #   redirect to "/login"
-    # else
-      @movie = Movies.create(:title => params[:title], :genre => params[:genre])
-      @movie.save
+     if !logged_in?
+       redirect to "/login"
+     else
       erb :'/movies/new'
-    # end
+     end
   end
   
-  # post '/movies' do 
-  #   @movie = Movies.create(:title => params[:title], :genre => params[:genre])
-  #   @movie.save
-  #   # redirect to "/movies/#{Movies.last.id}"
-  # end
+  post '/movies' do 
+     @movie = Movies.create(:title => params[:title], :genre => params[:genre], :user_id => session[:user_id])
+     @movie.save
+    redirect to "/movies/#{@movie.id}"
+  end
   
   get '/movies/:id' do 
     @movie = Movies.find_by_id(params[:id])
-    erb :movie_info
+    erb :show
   end 
   
   get '/movies/:id/edit' do 
@@ -46,9 +44,10 @@ class MovieController < ApplicationController
     @movie.title = params[:title]
     @movie.genre = params[:genre]
     @movie.save
+    redirect to "/movies/#{@movie.id}"
   end 
   
-  delete '/movies/:id' do 
+  delete '/movies/:id/delete' do 
     @movie = Movies.find_by_id(params[:id])
     @movie.delete 
     redirect '/movies'
