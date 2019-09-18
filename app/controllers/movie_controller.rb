@@ -7,6 +7,7 @@ class MovieController < ApplicationController
   get '/movies' do
     if logged_in?
      @user = User.find(session[:user_id])
+    # do i need @user?
      @movies = Movies.all.select {|movie| movie.user_id == session[:user_id]}
      erb :'/movies/home' 
     else 
@@ -15,18 +16,20 @@ class MovieController < ApplicationController
   end
   
   get '/movies/new' do
-    if !logged_in?
-      redirect to "/login"
-    else
+    # if !logged_in?
+    #   redirect to "/login"
+    # else
+      @movie = Movies.create(:title => params[:title], :genre => params[:genre])
+      @movie.save
       erb :'/movies/new'
-    end
+    # end
   end
   
-  post '/movies' do 
-    @movie = Movies.create(:title => params[:title], :genre => params[:genre])
-    @movie.save
-    redirect to "/movies/#{Movies.last.id}"
-  end
+  # post '/movies' do 
+  #   @movie = Movies.create(:title => params[:title], :genre => params[:genre])
+  #   @movie.save
+  #   # redirect to "/movies/#{Movies.last.id}"
+  # end
   
   get '/movies/:id' do 
     @movie = Movies.find_by_id(params[:id])
