@@ -9,7 +9,7 @@ class LoginController < ApplicationController
   end 
   
   get '/login' do 
-    erb :login 
+      erb :login 
   end 
   
   post '/login' do 
@@ -34,28 +34,20 @@ class LoginController < ApplicationController
     end
    end
   
-  # post '/signup' do 
-  #   if params[:username] != "" && params[:username] != "" && params[:password] != ""
-  #     @user = User.create(username: params[:username], email: params[:email], password: params[:password])
-  #     session[:user_id] = @user.id
+  post '/signup' do 
+    if params[:username] != "" && params[:username] != "" && params[:password] != ""
+      @user = User.create(username: params[:username], email: params[:email], password: params[:password])
+      session[:user_id] = @user.id
 
-  #     redirect "/movies"
-  #   else
-  #     redirect "/signup"
-  #   end
-  # end
-  
-  post "/signup" do
-   if params[:username].empty? || params[:password].empty?
-      redirect to '/login_failed'
-    end
-
-    user = User.new(:username => params[:username], :password => params[:password])
-    if user.save
-      redirect '/login'
+      redirect "/movies"
     else
-      redirect '/failure'
+      redirect "/signup"
     end
+  end
+  
+  get '/logout' do
+    session.clear 
+    redirect '/' 
   end
 
 end
