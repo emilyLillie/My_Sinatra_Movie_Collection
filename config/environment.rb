@@ -9,5 +9,5 @@ ActiveRecord::Base.establish_connection(
 )
 
 require_all 'app'
-# require_all './app/models'
+require_all './app/models'
 

@@ -1,6 +1,6 @@
 require "./config/environment"
 require "./app/models/user"
-# require "./app/models/movies"
+require "./app/models/movies"
 
 class MovieController < ApplicationController
   
@@ -15,15 +15,16 @@ class MovieController < ApplicationController
     end
   end
   
-  get '/movies/new' do
-     if !logged_in?
-       redirect to "/login"
-     else
-      erb :'/movies/new'
-     end
+  get "/movies/new" do
+    if !logged_in?
+      redirect to "/login"
+    else
+      erb :"/movies/new"
+    end
   end
   
-  post '/movies' do 
+  post "/movies/" do 
+     @user = User.find(session[:user_id])
      @movie = Movies.create(:title => params[:title], :genre => params[:genre], :user_id => session[:user_id])
      @movie.save
     redirect to "/movies/#{@movie.id}"
