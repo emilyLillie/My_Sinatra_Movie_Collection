@@ -9,7 +9,7 @@ class MovieController < ApplicationController
      @user = User.find(session[:user_id])
     # do i need @user?
      @movies = Movies.all.select {|movie| movie.user_id == session[:user_id]}
-     erb :'/movies/home' 
+     erb :'/movies/index' 
     else 
       redirect to "/login"
     end
