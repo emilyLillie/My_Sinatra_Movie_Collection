@@ -33,7 +33,7 @@ class MovieController < ApplicationController
   
   get '/movies/:id' do 
     @movie = Movies.find(params[:id])
-    erb :show
+    erb :"/movies/show"
   end 
   
   get '/movies/:id/edit' do 
