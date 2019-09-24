@@ -24,7 +24,7 @@ class MovieController < ApplicationController
     end
   end
   
-  post "/movies/" do 
+  post "/movies" do 
      @user = User.find(session[:user_id])
      @movie = Movies.create(:title => params[:title], :genre => params[:genre], :user_id => session[:user_id])
      @movie.save
@@ -32,12 +32,12 @@ class MovieController < ApplicationController
   end
   
   get '/movies/:id' do 
-    @movie = Movies.find_by_id(params[:id])
+    @movie = Movies.find(params[:id])
     erb :show
   end 
   
   get '/movies/:id/edit' do 
-    @movie = Movies.find_by_id(params[:id])
+    @movie = Movies.find(params[:id])
     erb :'/movies/edit'
   end 
   
