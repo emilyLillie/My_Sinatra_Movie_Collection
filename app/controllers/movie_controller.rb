@@ -19,6 +19,7 @@ class MovieController < ApplicationController
     if !logged_in?
       redirect to "/login"
     else
+      @movie= Movies.new 
       erb :"/movies/new"
     end
   end
